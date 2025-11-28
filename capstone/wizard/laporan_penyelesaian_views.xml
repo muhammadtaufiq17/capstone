@@ -1,0 +1,98 @@
+<odoo>
+
+    <record id="view_laporan_penyelesaian_form" model="ir.ui.view">
+        <field name="name">laporan.penyelesaian.wiz.form</field>
+        <field name="model">laporan.penyelesaian.wiz</field>
+        <field name="arch" type="xml">
+            <form string="Laporan Penyelesaian Dokumen" create="0">
+                <div class="text-left">
+                    <h1 style="font-family:Helvetica; color: #000000; font-size: 24px; font-weight: bold;">
+                        <field name="company_title" readonly="True"/>
+                        <field name="company_id" invisible="1"/>
+                    </h1>
+                </div>
+                <div class="text-left">
+                    <h2 style="font-family:Helvetica; color: #000000; font-size: 24px; font-weight: bold;">
+                        LAPORAN PENYELESAIAN DOKUMEN
+                    </h2>
+                </div>
+                <group col="2">
+                    <group>
+                        <field name="date_range"/>
+                        <field name="date_start"/>
+                        <field name="date_end"/>
+                    </group>
+                    <group></group>
+                </group>
+                <br/>
+                <!-- <footer> -->
+                <button string="Tampilkan" type="object" name="tampilkan" class="oe_highlight" style="height:30px; font-size: 12px"/>
+                <br/>
+                <field name="line_ids" nolabel="1" readonly="1">
+                    <tree string="list Laporan Penyelesaian" delete="0" edit="0">
+                        <field name="nama"/>
+                        <field name="sertifikat"/>
+                        <field name="proses"/>
+                        <field name="berkas_pendukung" filename="nama_berkas_pendukung" widget="binary"/>
+                        <field name="nama_berkas_pendukung" invisible="1"/>
+                        <field name="akta"/>
+                        <field name="berkas_akta" filename="nama_berkas_akta" widget="binary"/>
+                        <field name="nama_berkas_akta" invisible="1"/>
+                        <field name="tanggal_masuk"/>
+                        <field name="tanggal_keluar"/>
+                        <field name="bukti_foto" filename="nama_bukti_foto" widget="binary"/>
+                        <field name="nama_bukti_foto" invisible="1"/>
+                        <field name="status"/>
+                    </tree>
+                </field>
+                <!-- </footer> -->
+            </form>
+        </field>
+    </record>
+        
+    <record id="action_laporan_penyelesaian" model="ir.actions.act_window">
+        <field name="name">Laporan Penyelesaian Dokumen</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">laporan.penyelesaian.wiz</field>
+        <field name="view_mode">form</field>
+        <field name="context">{}</field>
+        <field name="view_id" ref="view_laporan_penyelesaian_form"/>
+        <field name="target">inline</field>
+    </record>
+
+    <menuitem id="menu_laporan_penyelesaian" name="Laporan Penyelesaian" 
+        action="action_laporan_penyelesaian" 
+        parent="capstone.main_menu_form_dok" 
+        sequence="5"/>
+
+    <!-- tree view BahanBakar Line -->
+    <!-- <record id="view_line_lap_penyelesaian_tree" model="ir.ui.view">
+        <field name="name">line.laporan.penyelesaian.wiz.tree</field>
+        <field name="model">line.laporan.penyelesaian.wiz</field>
+        <field name="arch" type="xml">
+            <tree string="list Laporan Penyelesaian">
+                <field name="nama"/>
+                <field name="sertifikat"/>
+                <field name="proses"/>
+                <field name="berkas_pendukung" filename="nama_berkas_pendukung" widget="binary"/>
+                <field name="nama_berkas_pendukung" invisible="1"/>
+                <field name="akta"/>
+                <field name="berkas_akta" filename="nama_berkas_akta" widget="binary"/>
+                <field name="nama_berkas_akta" invisible="1"/>
+                <field name="tanggal_masuk"/>
+                <field name="tanggal_keluar"/>
+                <field name="bukti_foto" filename="nama_bukti_foto" widget="binary"/>
+                <field name="nama_bukti_foto" invisible="1"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>   
+    
+    <record id="action_laporan_rnd_line" model="ir.actions.act_window">
+        <field name="name">Line Laporan Penyelesaian</field>
+        <field name="res_model">line.laporan.penyelesaian.wiz</field>
+        <field name="view_mode">tree</field>
+    </record> -->       
+     
+            
+</odoo>

@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+
+        <record id="view_form_dokumen" model="ir.ui.view">
+            <field name="name">form.dokumen.tree</field>
+            <field name="model">form.dokumen</field>
+            <field name="arch" type="xml">
+                <tree string="Form Dokumen" editable="bottom">
+                    <field name="nama"/>
+                    <field name="sertifikat"/>
+                    <field name="proses"/>
+                    <field name="berkas_pendukung" filename="nama_berkas_pendukung" widget="binary"/>
+                    <field name="nama_berkas_pendukung" invisible="1"/>
+                    <field name="akta"/>
+                    <field name="berkas_akta" filename="nama_berkas_akta" widget="binary"/>
+                    <field name="nama_berkas_akta" invisible="1"/>
+                    <field name="tanggal_masuk"/>
+                    <field name="tanggal_keluar"/>
+                    <field name="bukti_foto" filename="nama_bukti_foto" widget="binary"/>
+                    <field name="nama_bukti_foto" invisible="1"/>
+                    <field name="status"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_form_dokumen">
+            <field name="name">Form Dokumen</field>
+            <field name="res_model">form.dokumen</field>
+            <!-- <field name="view_type">form</field> -->
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="view_form_proses" model="ir.ui.view">
+            <field name="name">form.proses.tree</field>
+            <field name="model">proses</field>
+            <field name="arch" type="xml">
+                <tree string="Form Dokumen" editable="bottom">
+                    <field name="nama_proses"/>
+                    <field name="keterangan"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_form_proses">
+            <field name="name">Form Proses</field>
+            <field name="res_model">proses</field>
+            <!-- <field name="view_type">form</field> -->
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="main_menu_form_dok" name="Form Dok" sequence="1"/>
+        <menuitem id="menu_form_dok" name="Form Dokumen" parent="main_menu_form_dok" action="action_form_dokumen" sequence="1"/>
+        <menuitem id="menu_form_proses" name="Proses" parent="main_menu_form_dok" action="action_form_proses" sequence="2"/>
+
+        <record id="module_for_dokumen" model="ir.module.category">
+            <field name="name">Form Dokumen</field>
+            <field name="description">Helps you manage Documents Access.</field>
+            <field name="sequence">180</field>
+        </record>
+
+        <record id="group_dok_client" model="res.groups">
+            <field name="name">Form Dokumen: Client</field>
+            <field name="category_id" ref="module_for_dokumen"/>
+        </record>
+
+        <record id="group_dok_admin" model="res.groups">
+            <field name="name">Form Dokumen: Admin</field>
+            <field name="implied_ids" eval="[(4, ref('group_dok_client'))]"/>
+            <field name="category_id" ref="module_for_dokumen"/>
+        </record>
+
+    </data>
+</odoo>
